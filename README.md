@@ -28,11 +28,10 @@
 | item_category          | integer_id | null: false                    |
 | item_state             | integer_id | null: false                    |
 | shipping_charge        | integer_id | null: false                    |
-| shipping_area          | integer_id | null: false                    |
+| prefectures            | integer_id | null: false                    |
 | days_to_delivery       | integer_id | null: false                    |
 | price                  | integer    | null: false                    |
 | user                   | references | null: false, foreign_key: true |
-| item                   | references | null: false, foreign_key: true |
 
 ### Association
 
