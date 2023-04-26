@@ -9,15 +9,14 @@
 | encrypted_password         | string     | null: false              |
 | last_name                  | string     | null: false              |
 | first_name                 | string     | null: false              |
-| last_name(Kana characters) | string     | null: false              |
-| first_name(Kana characters)| string     | null: false              |
-| birthday                   | integer    | null: false              |
+| last_name_kanacharacters   | string     | null: false              |
+| first_name_kanacharacters  | string     | null: false              |
+| birthday                   | date       | null: false              |
 
 ### Association
 
 -has_many :items
 -has_many :buys
--has_one :deliverys
 
 
 ## items テーブル
@@ -26,21 +25,19 @@
 | -----------------------| -----------| -------------------------------|
 | item_name              | string     | null: false                    |
 | description_of_item    | text       | null: false                    |
-| item_category          | integer    | null: false                    |
-| postcode               | integer    | null: false                    |
-| prefectures            | string     | null: false                    |
-| municipalities         | string     | null: false                    |
-| address                | string     | null: false                    |
-| building_names         | string     |                                |
-| telephone_number       | integer    | null: false                    |
+| item_category          | integer_id | null: false                    |
+| item_state             | integer_id | null: false                    |
+| shipping_charge        | integer_id | null: false                    |
+| shipping_area          | integer_id | null: false                    |
+| days_to_delivery       | integer_id | null: false                    |
+| price                  | integer    | null: false                    |
 | user                   | references | null: false, foreign_key: true |
 | item                   | references | null: false, foreign_key: true |
 
 ### Association
 
 -belongs_to :user
--has_one :buys
--has_one :deliverys
+-has_one :buy
 
 
 ## buys テーブル
@@ -54,24 +51,20 @@
 
 -belongs_to :user
 -belongs_to :item
--has-one : deliverys
+-has_one :delivery
 
 ## deliverys テーブル
 
 | Column                 | Type       | Options                        |
 | -----------------------| -----------| -------------------------------|
-| postcode               | integer    | null: false                    |
-| prefectures            | string     | null: false                    |
-| municipalities         | string     | null: false                    |
+| postcode               | string     | null: false                    |
+| prefectures            | integer_id | null: false                    |
+| municipality           | string     | null: false                    |
 | address                | string     | null: false                    |
-| building_names         | string     |                                |
-| telephone_number       | integer    | null: false                    |
-| user                   | references | null: false, foreign_key: true |
-| item                   | references | null: false, foreign_key: true |
-| buys                   | references | null: false, foreign_key: true |
+| building_name          | string     |                                |
+| telephone_number       | string     | null: false                    |
+| buy                    | references | null: false, foreign_key: true |
 
 ### Association
 
--belongs_to :user
--belongs_to :item
 -belongs_to :buy
