@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true
-  validates :first_name, presence: true, format: { with: /\A([ぁ-んァ-ン一-龥]|ー)+\z/}
-  validates :last_name, presence: true, format: { with: /\A([ぁ-んァ-ン一-龥]|ー)+\z/}
+  validates :email, presence: true
+  validates :first_name, presence: true, format: { with: \A[ぁ-んァ-ヶ一-龥々ー]+\z/}
+  validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/}
   validates :last_name_kanacharacters, presence: true, format: { with: /\A([ァ-ン]|ー)+\z/}
   validates :first_name_kanacharacters, presence: true, format: { with: /\A([ァ-ン]|ー)+\z/}
   validates :birthday, presence: true
@@ -16,8 +16,8 @@ class User < ApplicationRecord
   validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }
 
 
-  has_many :items
-  has_many :buys
+  #has_many :items
+  #has_many :buys
 
 end
 
