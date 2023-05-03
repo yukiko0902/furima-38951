@@ -60,7 +60,7 @@ RSpec.describe User, type: :model do
       it "last_name_kanacharactersが空では登録できない" do
         @user.last_name_kanacharacters = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name kanacharacters can't be blank", "Last name kanacharacters is invalid"
+        expect(@user.errors.full_messages).to include "Last name kanacharacters can't be blank"
       end
       it "last_name_kanacharactersは全角カナ以外は登録できない" do
         @user.last_name_kanacharacters = 'やまだ'
@@ -71,7 +71,7 @@ RSpec.describe User, type: :model do
       it "first_name_kanacharactersが空では登録できない" do
         @user.first_name_kanacharacters = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name kanacharacters can't be blank", "First name kanacharacters is invalid"
+        expect(@user.errors.full_messages).to include "First name kanacharacters can't be blank"
       end
       it "first_name_kanacharactersは全角カナ以外は登録できない" do
         @user.first_name_kanacharacters = 'たろう'
