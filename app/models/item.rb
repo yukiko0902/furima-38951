@@ -1,2 +1,30 @@
 class Item < ApplicationRecord
+  belongs_to :user
+  has_one :buy
+  has_one_attached :image
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :genre 
+  belongs_to :category
+  belongs_to :state
+  belongs_to :shipping_charge
+  belongs_to :prefecture
+  belongs_to :days_to_delivery
+  
+  validates :image, presence: true
+  validates :item_name, presence: true
+  validates :description_of_item, presence: true
+  validates :item_category_id, presence: true
+  validates :item_state_id, presence: true
+  validates :shipping_charge_id, presence: true
+  validates :prefecture_id, presence: true
+  validates :days_to_delivery_id, presence: true
+  validates :price, presence: true
+
+  validates :item_category_id, numericality: { other_than: 1 } 
+  validates :item_state_id, numericality: { other_than: 1 } 
+  validates :shipping_charge_id, numericality: { other_than: 1 } 
+  validates :prefecture_id, numericality: { other_than: 1 } 
+  validates :days_to_delivery_id, numericality: { other_than: 1 }   
 end
+
