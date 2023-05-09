@@ -4,7 +4,6 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :genre 
   belongs_to :category
   belongs_to :state
   belongs_to :shipping_charge
@@ -19,7 +18,7 @@ class Item < ApplicationRecord
   validates :shipping_charge_id, presence: true
   validates :prefecture_id, presence: true
   validates :days_to_delivery_id, presence: true
-  validates :price, presence: true
+  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
 
   validates :item_category_id, numericality: { other_than: 1 } 
   validates :item_state_id, numericality: { other_than: 1 } 
