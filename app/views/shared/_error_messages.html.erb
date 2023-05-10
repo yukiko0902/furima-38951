@@ -1,9 +1,12 @@
 <% if model.errors.any? %>
   <div id="error_explanation" data-turbo-cache="false">
     <ul>
-      <% model.errors.full_messages.each do |message| %>
+      <div class = "error-message">
+        <% model.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+        <% end %>
+      </div>
     </ul>
+    
   </div>
 <% end %>
