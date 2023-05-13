@@ -129,7 +129,7 @@
     <ul class='item-lists'>
       <% @items.each do |i|%>
         <li class='list'>
-          <%= link_to "#" do %>
+          <%= link_to item_path(i) do %>  
             <div class='item-img-content'>
               <%= image_tag i.image, class: "item-img" %>
       
@@ -176,6 +176,7 @@
       <%end%>
     </ul>
   </div>
+  <%# 商品一覧 %>
 </div>
   <%= link_to(new_item_path, method: :get, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
