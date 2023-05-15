@@ -1,4 +1,4 @@
-class State < ActiveHash::Base
+class ItemState < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '新品・未使用' },
@@ -6,10 +6,9 @@ class State < ActiveHash::Base
     { id: 4, name: '目立った傷や汚れ内' },
     { id: 5, name: 'やや傷や汚れあり' },
     { id: 6, name: '傷や汚れあり' },
-    { id: 7, name: '全体的に状態が悪い' },
+    { id: 7, name: '全体的に状態が悪い' }
   ]
 
   include ActiveHash::Associations
   has_many :items
-
 end
