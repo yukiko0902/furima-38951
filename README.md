@@ -12,7 +12,7 @@
 | last_name_kanacharacters   | string     | null: false              |
 | first_name_kanacharacters  | string     | null: false              |
 | birthday                   | date       | null: false              |
-
+  
 ### Association
 
 -has_many :items
