@@ -7,4 +7,5 @@ window.addEventListener('load', () => {
      const addProfitDom = document.getElementById("profit");
      addProfitDom.innerHTML = Math.floor(priceInput.value - Math.round(priceInput.value * 0.1 ))
  })
+
 });
