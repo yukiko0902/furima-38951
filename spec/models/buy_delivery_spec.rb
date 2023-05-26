@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe BuyDelivery, type: :model do
   before do
-    @buy_delivery = FactoryBot.build(:buy_delivery)
+    @item = FactoryBot.create(:item)
+    @user = FactoryBot.create(:user)
+    @buy_delivery = FactoryBot.build(:buy_delivery,user_id: @user.id, item_id: @item.id)
   end
 
   describe '商品購入機能' do
@@ -70,8 +72,20 @@ RSpec.describe BuyDelivery, type: :model do
         expect(@buy_delivery.errors.full_messages).to include("Telephone number can't be blank")
       end
 
-      it '電話番号は10桁以上11桁以内の半角数値のみでないと購入できない' do
+      it '電話番号は9桁以下では購入できない' do
         @buy_delivery.telephone_number = "090-123-456"
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include("Telephone number is invalid")
+      end
+
+      it '電話番号は12桁以上では購入できない' do
+        @buy_delivery.telephone_number = "090-1234-45678"
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include("Telephone number is invalid")
+      end
+
+      it '電話番号に半角数字以外が含まれている場合は購入できない' do
+        @buy_delivery.telephone_number = "090-1234-１１１１"
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include("Telephone number is invalid")
       end
@@ -80,6 +94,18 @@ RSpec.describe BuyDelivery, type: :model do
         @buy_delivery.token = nil
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'userが紐づいてなければ購入できない' do
+        @buy_delivery.user_id = nil
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'itemが紐づいてなければ購入できない' do
+        @buy_delivery.item_id = nil
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
