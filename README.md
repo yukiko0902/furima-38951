@@ -19,7 +19,7 @@
 -has_many :buys
 
 
-## items テーブル
+## items テーブル 
 
 | Column                 | Type       | Options                        |
 | -----------------------| -----------| -------------------------------|
@@ -66,4 +66,4 @@
 
 ### Association
 
--belongs_to :buy
+-belongs_to :buy 
